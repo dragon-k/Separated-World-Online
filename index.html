@@ -18,7 +18,73 @@
   <!-- Custom styles for this template -->
   <link href="carousel.css" rel="stylesheet">
 
-  <style>
+  <style>{
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .news-container {
+      display: flex;
+      max-width: 1200px;
+      margin: 20px auto;
+      gap: 20px;
+    }
+    .main-news {
+      flex: 3;
+      background: #f9f9f9;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .main-news img {
+      width: 100%;
+      height: auto;
+    }
+    .main-news .content {
+      padding: 20px;
+    }
+    .main-news .content h2 {
+      margin: 0;
+      font-size: 24px;
+      color: #333;
+    }
+    .main-news .content p {
+      color: #666;
+      line-height: 1.6;
+    }
+    .side-news {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .side-news .news-item {
+      display: flex;
+      gap: 10px;
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      align-items: center;
+    }
+    .side-news .news-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    .side-news .news-item .info {
+      flex: 1;
+    }
+    .side-news .news-item .info h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+    .side-news .news-item .info p {
+      margin: 0;
+      font-size: 12px;
+      color: #666;
+    }
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -171,7 +237,56 @@
   <!-- Marketing messaging and featurettes
   ================================================== -->
   <!-- Wrap the rest of the page in another container to center all the content. -->
+<div class="news-container">
+    <!-- メインニュース -->
+    <div class="main-news">
+      <img src="Images/main-news.jpg" alt="メインニュース">
+      <div class="content">
+        <h2>メインニュースのタイトルがここに表示されます</h2>
+        <p>メインニュースの説明文がここに入ります。内容を詳しく表示したり、注目のニュースをここに配置します。</p>
+      </div>
+    </div>
 
+    <!-- サイドニュース -->
+    <div class="side-news">
+      <div class="news-item">
+        <img src="Images/news1.jpg" alt="ニュース1">
+        <div class="info">
+          <h3>ニュース1のタイトル</h3>
+          <p>簡単な説明</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <img src="Images/news2.jpg" alt="ニュース2">
+        <div class="info">
+          <h3>ニュース2のタイトル</h3>
+          <p>簡単な説明</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <img src="Images/news3.jpg" alt="ニュース3">
+        <div class="info">
+          <h3>ニュース3のタイトル</h3>
+          <p>簡単な説明</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <img src="Images/news4.jpg" alt="ニュース4">
+        <div class="info">
+          <h3>ニュース4のタイトル</h3>
+          <p>簡単な説明</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <img src="Images/news5.jpg" alt="ニュース5">
+        <div class="info">
+          <h3>ニュース5のタイトル</h3>
+          <p>簡単な説明</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <div class="container marketing">
 
     <div calss="row featurette">
