@@ -85,6 +85,24 @@
       font-size: 12px;
       color: #666;
     }
+    @media (max-width: 768px) {
+  .news-container {
+    flex-direction: column;
+  }
+
+  .main-news {
+    order: -1; /* 一番上に表示 */
+  }
+
+  .sub-news {
+    flex-direction: column; /* 縦並び */
+  }
+
+  .sub-news-item img {
+    width: 100%; /* スマホ画面幅に適応 */
+    height: auto;
+  }
+}
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
