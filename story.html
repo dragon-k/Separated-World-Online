@@ -36,6 +36,38 @@
         font-size: 3.5rem;
       }
     }
+    .chapter-btn {
+      width: 100%;
+      height: 110px;
+      color: white;
+      margin-bottom: 5px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      font-size: 1.2em;
+    }
+
+    .act-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: none; /* 初期状態は非表示 */
+    }
+
+    .act-item {
+      margin: 5px 0;
+    }
+
+    .act-btn {
+      width: 100%;
+      height: 110px;
+      color: white;
+      margin-bottom: 5px;
+      border: none;
+      text-align: center;
+      cursor: pointer;
+      font-size: 1em;
+    }
   </style>
 </head>
 
@@ -87,23 +119,31 @@
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 6%">6%</div>
       </div>
       <h4>ストーリーごと<a style="background:linear-gradient(transparent 70%, #ffff00dc 0%);">リニューアル中</a>です。</h4>
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              ストーリーについて見る
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <button class="btn" href="screenshots.html" style="background:url('Images/1so.png');width:100%;height:110px;color:white;background-position:center;margin-bottom:5px">第一章 第一幕「遥かなる旅路」</button>
-            <button class="btn btn-secondary disabled" style="width:100%;height:110px;color:white;background-position:center;margin-bottom:5px">今後追加していきます</button>
-          </div>
-        </div>
-      </div>
-      <br><h2 class="fw-bold">制作モチベーション</h2>
-      <div class="progress">
-        <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated text-dark" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width: 76%">76%</div>
-      </div>
+      
+      <div id="story-container">
+    <!-- 第一章 -->
+    <button class="chapter-btn" data-chapter="chapter1">第一章</button>
+    <ul id="chapter1" class="act-list">
+      <li class="act-item">
+        <button class="act-btn" style="background:url('Images/act1.png');background-position:center;">第一幕「遥かなる旅路」</button>
+      </li>
+      <li class="act-item">
+        <button class="act-btn" style="background:url('Images/act2.png');background-position:center;">第二幕「未知の地平線」</button>
+      </li>
+    </ul>
+
+    <!-- 第二章 -->
+    <button class="chapter-btn" data-chapter="chapter2">第二章</button>
+    <ul id="chapter2" class="act-list">
+      <li class="act-item">
+        <button class="act-btn" style="background:url('Images/act3.png');background-position:center;">第一幕「廃土」</button>
+      </li>
+      <li class="act-item">
+        <button class="act-btn" style="background:url('Images/act4.png');background-position:center;">第二幕「灰の都市」</button>
+      </li>
+    </ul>
+  </div>
+      
     </div>
     <br>
 
@@ -156,9 +196,18 @@
     </div>
     <!-- Alert(javascript) -->
     <script>
-      function successAlert(){
-        alert("✔ プライバシーポリシーへの同意を確認しました\n🙇ご同意くださりありがとうございます。");
-      }
+      // JavaScriptで章のボタンをクリックした際の挙動を設定
+    document.querySelectorAll('.chapter-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const chapterId = button.dataset.chapter;
+        const actList = document.getElementById(chapterId);
+        if (actList.style.display === 'none' || actList.style.display === '') {
+          actList.style.display = 'block'; // 展開
+        } else {
+          actList.style.display = 'none'; // 非表示
+        }
+      });
+    });
     </script>
   </footer>
 </main>
