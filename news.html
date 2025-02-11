@@ -30,9 +30,22 @@
     <button class="load-more" id="load-more">もっと見る</button>
 
     <script>
-        async function fetchNews() {
-    const indexResponse = await fetch('newsIndex.html');
-    const indexData = await
+        async function fetchNewsFiles() {
+            const files = ["news1.json", "news2.json", "news3.json"];
+            let allNews = [];
+
+            for (const file of files) {
+                try {
+                    const response = await fetch(file);
+                    const data = await response.json();
+                    allNews = allNews.concat(data);
+                } catch (error) {
+                    console.error(`Error loading ${file}:`, error);
+                }
+            }
+
+            allNews.sort((a, b) => new Date(b.date) - new Date(a.date));
+            return allNews;
         }
 
         let newsData = {};
@@ -40,22 +53,24 @@
         let visibleCount = 5;
 
         async function renderNews() {
-            if (!newsData[currentCategory]) {
-                newsData = await fetchNews();
+            if (!newsData.length) {
+                newsData = await fetchNewsFiles();
             }
             
             const list = document.getElementById("news-list");
             list.innerHTML = "";
-            const items = newsData[currentCategory].slice(0, visibleCount);
+            const items = newsData.filter(news => news.category === currentCategory).slice(0, visibleCount);
             items.forEach(news => {
                 const li = document.createElement("li");
                 li.classList.add("news-item");
                 li.innerHTML = `
-                    <img src="${news.image}" alt="${news.title}">
-                    <div class="news-content">
-                        <div class="news-title">${news.title}</div>
-                        <div class="news-subtitle">${news.subtitle}</div>
-                    </div>
+                    <a href="${news.link}" style="text-decoration: none; color: inherit;">
+                        <img src="${news.image}" alt="${news.title}">
+                        <div class="news-content">
+                            <div class="news-title">${news.title}</div>
+                            <div class="news-subtitle">${news.subtitle}</div>
+                        </div>
+                    </a>
                 `;
                 list.appendChild(li);
             });
