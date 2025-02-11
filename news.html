@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPGゲームニュース</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab { padding: 10px; cursor: pointer; border: 1px solid #ccc; border-radius: 5px; }
+        .tab.active { background-color: #007bff; color: white; }
+        .news-list { list-style: none; padding: 0; }
+        .news-item { padding: 10px; border-bottom: 1px solid #ddd; }
+        .load-more { margin-top: 20px; padding: 10px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>RPGゲームニュース</h1>
+    <div class="tabs">
+        <div class="tab active" data-category="latest">最新</div>
+        <div class="tab" data-category="announcement">告知</div>
+        <div class="tab" data-category="notice">お知らせ</div>
+        <div class="tab" data-category="event">イベント</div>
+    </div>
+    <ul class="news-list" id="news-list"></ul>
+    <button class="load-more" id="load-more">もっと見る</button>
+
+    <script>
+        const newsData = {
+            latest: [
+                { title: "最新ニュース1", date: "2025-02-10" },
+                { title: "最新ニュース2", date: "2025-02-09" },
+                { title: "最新ニュース3", date: "2025-02-08" },
+                { title: "最新ニュース4", date: "2025-02-07" },
+                { title: "最新ニュース5", date: "2025-02-06" },
+                { title: "過去ニュース1", date: "2025-02-05" },
+                { title: "過去ニュース2", date: "2025-02-04" }
+            ],
+            announcement: [
+                { title: "告知1", date: "2025-02-10" },
+                { title: "告知2", date: "2025-02-09" }
+            ],
+            notice: [
+                { title: "お知らせ1", date: "2025-02-08" }
+            ],
+            event: [
+                { title: "イベント情報1", date: "2025-02-07" },
+                { title: "イベント情報2", date: "2025-02-06" }
+            ]
+        };
+
+        let currentCategory = "latest";
+        let visibleCount = 5;
+
+        function renderNews() {
+            const list = document.getElementById("news-list");
+            list.innerHTML = "";
+            const items = newsData[currentCategory].slice(0, visibleCount);
+            items.forEach(news => {
+                const li = document.createElement("li");
+                li.classList.add("news-item");
+                li.textContent = `${news.date} - ${news.title}`;
+                list.appendChild(li);
+            });
+        }
+
+        document.querySelectorAll(".tab").forEach(tab => {
+            tab.addEventListener("click", function() {
+                document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+                this.classList.add("active");
+                currentCategory = this.dataset.category;
+                visibleCount = 5;
+                renderNews();
+            });
+        });
+
+        document.getElementById("load-more").addEventListener("click", function() {
+            visibleCount += 5;
+            renderNews();
+        });
+
+        renderNews();
+    </script>
+</body>
+</html>
