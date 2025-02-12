@@ -12915,7 +12915,7 @@ font-size : 3.5rem;
 }
 }
 .container {
-    max-width: 100%; /* デフォルトの制限を解除 */
+    max-width: 105%; /* デフォルトの制限を解除 */
     width: 96%; /* 画面幅の95%を使用 */
     margin: 0 auto; /* 中央寄せ */
 }
